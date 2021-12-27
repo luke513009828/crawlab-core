@@ -3,8 +3,8 @@ package local_node
 import (
 	"github.com/apex/log"
 	"github.com/cenkalti/backoff/v4"
-	"github.com/crawlab-team/crawlab-core/models"
-	models2 "github.com/crawlab-team/crawlab-core/models/models"
+	"github.com/luke513009828/crawlab-core/models"
+	models2 "github.com/luke513009828/crawlab-core/models/models"
 	"go.uber.org/atomic"
 	"sync"
 	"time"

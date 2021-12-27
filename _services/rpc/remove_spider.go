@@ -1,10 +1,10 @@
 package rpc
 
 import (
-	"github.com/crawlab-team/crawlab-core/constants"
-	"github.com/crawlab-team/crawlab-core/entity"
-	"github.com/crawlab-team/crawlab-core/models"
-	"github.com/crawlab-team/crawlab-core/utils"
+	"github.com/luke513009828/crawlab-core/constants"
+	"github.com/luke513009828/crawlab-core/entity"
+	"github.com/luke513009828/crawlab-core/models"
+	"github.com/luke513009828/crawlab-core/utils"
 	"github.com/spf13/viper"
 	"path/filepath"
 )

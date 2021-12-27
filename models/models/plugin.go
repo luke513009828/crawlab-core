@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/crawlab-team/crawlab-core/entity"
+	"github.com/luke513009828/crawlab-core/entity"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 

@@ -2,7 +2,7 @@ package services
 
 import (
 	"github.com/apex/log"
-	"github.com/crawlab-team/crawlab-core/entity"
+	"github.com/luke513009828/crawlab-core/entity"
 	"github.com/imroc/req"
 	"runtime/debug"
 	"sort"

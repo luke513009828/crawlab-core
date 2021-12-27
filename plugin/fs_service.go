@@ -2,9 +2,9 @@ package plugin
 
 import (
 	"fmt"
-	"github.com/crawlab-team/crawlab-core/errors"
-	"github.com/crawlab-team/crawlab-core/fs"
-	"github.com/crawlab-team/crawlab-core/interfaces"
+	"github.com/luke513009828/crawlab-core/errors"
+	"github.com/luke513009828/crawlab-core/fs"
+	"github.com/luke513009828/crawlab-core/interfaces"
 	"github.com/crawlab-team/go-trace"
 	"github.com/spf13/viper"
 	"go.mongodb.org/mongo-driver/bson/primitive"

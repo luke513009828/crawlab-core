@@ -2,7 +2,7 @@ package test
 
 import (
 	"fmt"
-	"github.com/crawlab-team/crawlab-core/fs"
+	"github.com/luke513009828/crawlab-core/fs"
 	"github.com/stretchr/testify/require"
 	"io/ioutil"
 	"os"

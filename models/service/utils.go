@@ -2,7 +2,7 @@ package service
 
 import (
 	"encoding/json"
-	"github.com/crawlab-team/crawlab-core/interfaces"
+	"github.com/luke513009828/crawlab-core/interfaces"
 	"github.com/crawlab-team/crawlab-db/mongo"
 	"github.com/emirpasic/gods/lists/arraylist"
 	"go.mongodb.org/mongo-driver/bson"

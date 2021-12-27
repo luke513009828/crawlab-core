@@ -3,8 +3,8 @@ package utils
 import (
 	"encoding/json"
 	"github.com/apex/log"
-	"github.com/crawlab-team/crawlab-core/constants"
-	"github.com/crawlab-team/crawlab-core/entity"
+	"github.com/luke513009828/crawlab-core/constants"
+	"github.com/luke513009828/crawlab-core/entity"
 	"github.com/spf13/viper"
 	"io/ioutil"
 	"path"

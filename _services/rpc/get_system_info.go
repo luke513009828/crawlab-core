@@ -2,9 +2,9 @@ package rpc
 
 import (
 	"encoding/json"
-	"github.com/crawlab-team/crawlab-core/constants"
-	"github.com/crawlab-team/crawlab-core/entity"
-	models2 "github.com/crawlab-team/crawlab-core/models/models"
+	"github.com/luke513009828/crawlab-core/constants"
+	"github.com/luke513009828/crawlab-core/entity"
+	models2 "github.com/luke513009828/crawlab-core/models/models"
 )
 
 type GetSystemInfoService struct {

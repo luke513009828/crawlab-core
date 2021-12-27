@@ -2,9 +2,9 @@ package middlewares
 
 import (
 	"context"
-	"github.com/crawlab-team/crawlab-core/constants"
-	"github.com/crawlab-team/crawlab-core/errors"
-	"github.com/crawlab-team/crawlab-core/interfaces"
+	"github.com/luke513009828/crawlab-core/constants"
+	"github.com/luke513009828/crawlab-core/errors"
+	"github.com/luke513009828/crawlab-core/interfaces"
 	"github.com/grpc-ecosystem/go-grpc-middleware/auth"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"

@@ -1,9 +1,9 @@
 package client
 
 import (
-	config2 "github.com/crawlab-team/crawlab-core/config"
-	"github.com/crawlab-team/crawlab-core/grpc/client"
-	"github.com/crawlab-team/crawlab-core/interfaces"
+	config2 "github.com/luke513009828/crawlab-core/config"
+	"github.com/luke513009828/crawlab-core/grpc/client"
+	"github.com/luke513009828/crawlab-core/interfaces"
 	"go.uber.org/dig"
 )
 

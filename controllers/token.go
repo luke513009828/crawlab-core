@@ -1,11 +1,11 @@
 package controllers
 
 import (
-	"github.com/crawlab-team/crawlab-core/interfaces"
-	"github.com/crawlab-team/crawlab-core/models/delegate"
-	"github.com/crawlab-team/crawlab-core/models/models"
-	"github.com/crawlab-team/crawlab-core/models/service"
-	"github.com/crawlab-team/crawlab-core/user"
+	"github.com/luke513009828/crawlab-core/interfaces"
+	"github.com/luke513009828/crawlab-core/models/delegate"
+	"github.com/luke513009828/crawlab-core/models/models"
+	"github.com/luke513009828/crawlab-core/models/service"
+	"github.com/luke513009828/crawlab-core/user"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/dig"
 )

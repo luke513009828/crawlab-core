@@ -1,7 +1,7 @@
 package test
 
 import (
-	"github.com/crawlab-team/crawlab-core/constants"
+	"github.com/luke513009828/crawlab-core/constants"
 	"github.com/stretchr/testify/require"
 	"testing"
 	"time"

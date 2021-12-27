@@ -1,7 +1,7 @@
 package client
 
 import (
-	"github.com/crawlab-team/crawlab-core/interfaces"
+	"github.com/luke513009828/crawlab-core/interfaces"
 	"time"
 )
 

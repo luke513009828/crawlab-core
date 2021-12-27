@@ -1,8 +1,8 @@
 package models
 
 import (
-	"github.com/crawlab-team/crawlab-core/interfaces"
-	"github.com/crawlab-team/crawlab-core/utils/binders"
+	"github.com/luke513009828/crawlab-core/interfaces"
+	"github.com/luke513009828/crawlab-core/utils/binders"
 )
 
 func GetModelColName(id interfaces.ModelId) (colName string) {

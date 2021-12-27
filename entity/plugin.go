@@ -2,7 +2,7 @@ package entity
 
 import (
 	"encoding/json"
-	"github.com/crawlab-team/crawlab-core/constants"
+	"github.com/luke513009828/crawlab-core/constants"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )

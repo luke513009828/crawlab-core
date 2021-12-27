@@ -1,6 +1,6 @@
 package config_spider
 
-import "github.com/crawlab-team/crawlab-core/entity"
+import "github.com/luke513009828/crawlab-core/entity"
 
 func GetAllFields(data entity.ConfigSpiderData) []entity.Field {
 	var fields []entity.Field

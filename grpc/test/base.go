@@ -1,11 +1,11 @@
 package test
 
 import (
-	"github.com/crawlab-team/crawlab-core/entity"
-	"github.com/crawlab-team/crawlab-core/grpc/client"
-	"github.com/crawlab-team/crawlab-core/grpc/server"
-	"github.com/crawlab-team/crawlab-core/interfaces"
-	"github.com/crawlab-team/crawlab-core/node/test"
+	"github.com/luke513009828/crawlab-core/entity"
+	"github.com/luke513009828/crawlab-core/grpc/client"
+	"github.com/luke513009828/crawlab-core/grpc/server"
+	"github.com/luke513009828/crawlab-core/interfaces"
+	"github.com/luke513009828/crawlab-core/node/test"
 	"testing"
 	"time"
 )

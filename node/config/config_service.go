@@ -2,10 +2,10 @@ package config
 
 import (
 	"encoding/json"
-	"github.com/crawlab-team/crawlab-core/config"
-	"github.com/crawlab-team/crawlab-core/entity"
-	"github.com/crawlab-team/crawlab-core/interfaces"
-	"github.com/crawlab-team/crawlab-core/utils"
+	"github.com/luke513009828/crawlab-core/config"
+	"github.com/luke513009828/crawlab-core/entity"
+	"github.com/luke513009828/crawlab-core/interfaces"
+	"github.com/luke513009828/crawlab-core/utils"
 	"github.com/crawlab-team/go-trace"
 	"github.com/spf13/viper"
 	"io/ioutil"

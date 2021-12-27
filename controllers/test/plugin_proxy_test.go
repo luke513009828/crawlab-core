@@ -2,10 +2,10 @@ package test
 
 import (
 	"context"
-	"github.com/crawlab-team/crawlab-core/constants"
-	"github.com/crawlab-team/crawlab-core/controllers"
-	"github.com/crawlab-team/crawlab-core/models/delegate"
-	"github.com/crawlab-team/crawlab-core/models/models"
+	"github.com/luke513009828/crawlab-core/constants"
+	"github.com/luke513009828/crawlab-core/controllers"
+	"github.com/luke513009828/crawlab-core/models/delegate"
+	"github.com/luke513009828/crawlab-core/models/models"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/require"
 	"net/http"

@@ -3,7 +3,7 @@ package utils
 import (
 	"encoding/json"
 	"github.com/apex/log"
-	"github.com/crawlab-team/crawlab-core/entity"
+	"github.com/luke513009828/crawlab-core/entity"
 	"github.com/gomodule/redigo/redis"
 	"io"
 	"reflect"

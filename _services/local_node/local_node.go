@@ -1,7 +1,7 @@
 package local_node
 
 import (
-	models2 "github.com/crawlab-team/crawlab-core/models/models"
+	models2 "github.com/luke513009828/crawlab-core/models/models"
 	"github.com/spf13/viper"
 )
 

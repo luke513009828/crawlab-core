@@ -2,7 +2,7 @@ package entity
 
 import (
 	"encoding/json"
-	"github.com/crawlab-team/crawlab-core/interfaces"
+	"github.com/luke513009828/crawlab-core/interfaces"
 	"github.com/crawlab-team/go-trace"
 )
 

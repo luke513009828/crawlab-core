@@ -2,10 +2,10 @@ package service_test
 
 import (
 	"fmt"
-	"github.com/crawlab-team/crawlab-core/interfaces"
-	"github.com/crawlab-team/crawlab-core/models/delegate"
-	models2 "github.com/crawlab-team/crawlab-core/models/models"
-	"github.com/crawlab-team/crawlab-core/models/service"
+	"github.com/luke513009828/crawlab-core/interfaces"
+	"github.com/luke513009828/crawlab-core/models/delegate"
+	models2 "github.com/luke513009828/crawlab-core/models/models"
+	"github.com/luke513009828/crawlab-core/models/service"
 	"github.com/stretchr/testify/require"
 	"go.mongodb.org/mongo-driver/bson"
 	"testing"

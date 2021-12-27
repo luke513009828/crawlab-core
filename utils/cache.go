@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"github.com/crawlab-team/crawlab-core/constants"
+	"github.com/luke513009828/crawlab-core/constants"
 	"github.com/crawlab-team/crawlab-db/mongo"
 	"go.mongodb.org/mongo-driver/bson"
 	mongo2 "go.mongodb.org/mongo-driver/mongo"

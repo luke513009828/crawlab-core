@@ -1,8 +1,8 @@
 package client
 
 import (
-	"github.com/crawlab-team/crawlab-core/errors"
-	"github.com/crawlab-team/crawlab-core/interfaces"
+	"github.com/luke513009828/crawlab-core/errors"
+	"github.com/luke513009828/crawlab-core/interfaces"
 	"github.com/crawlab-team/go-trace"
 	"github.com/emirpasic/gods/lists/arraylist"
 	"go.uber.org/dig"

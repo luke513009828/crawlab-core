@@ -2,11 +2,11 @@ package delegate
 
 import (
 	"encoding/json"
-	errors2 "github.com/crawlab-team/crawlab-core/errors"
-	"github.com/crawlab-team/crawlab-core/event"
-	"github.com/crawlab-team/crawlab-core/interfaces"
-	"github.com/crawlab-team/crawlab-core/models/models"
-	"github.com/crawlab-team/crawlab-core/utils"
+	errors2 "github.com/luke513009828/crawlab-core/errors"
+	"github.com/luke513009828/crawlab-core/event"
+	"github.com/luke513009828/crawlab-core/interfaces"
+	"github.com/luke513009828/crawlab-core/models/models"
+	"github.com/luke513009828/crawlab-core/utils"
 	"github.com/crawlab-team/crawlab-db/errors"
 	"github.com/crawlab-team/crawlab-db/mongo"
 	"github.com/crawlab-team/go-trace"

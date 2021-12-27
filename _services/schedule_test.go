@@ -1,9 +1,9 @@
 package services
 
 import (
-	"github.com/crawlab-team/crawlab-core/models"
-	models2 "github.com/crawlab-team/crawlab-core/models/models"
-	spider2 "github.com/crawlab-team/crawlab-core/spider"
+	"github.com/luke513009828/crawlab-core/models"
+	models2 "github.com/luke513009828/crawlab-core/models/models"
+	spider2 "github.com/luke513009828/crawlab-core/spider"
 	"github.com/crawlab-team/crawlab-db/redis"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"

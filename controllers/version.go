@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/crawlab-team/crawlab-core/config"
+	"github.com/luke513009828/crawlab-core/config"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

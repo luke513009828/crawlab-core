@@ -1,13 +1,13 @@
 package schedule
 
 import (
-	"github.com/crawlab-team/crawlab-core/config"
-	"github.com/crawlab-team/crawlab-core/interfaces"
-	"github.com/crawlab-team/crawlab-core/models/delegate"
-	"github.com/crawlab-team/crawlab-core/models/models"
-	"github.com/crawlab-team/crawlab-core/models/service"
-	"github.com/crawlab-team/crawlab-core/spider/admin"
-	"github.com/crawlab-team/crawlab-core/utils"
+	"github.com/luke513009828/crawlab-core/config"
+	"github.com/luke513009828/crawlab-core/interfaces"
+	"github.com/luke513009828/crawlab-core/models/delegate"
+	"github.com/luke513009828/crawlab-core/models/models"
+	"github.com/luke513009828/crawlab-core/models/service"
+	"github.com/luke513009828/crawlab-core/spider/admin"
+	"github.com/luke513009828/crawlab-core/utils"
 	"github.com/crawlab-team/go-trace"
 	"github.com/robfig/cron/v3"
 	"go.mongodb.org/mongo-driver/bson"
