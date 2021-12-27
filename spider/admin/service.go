@@ -1,6 +1,7 @@
 package admin
 
 import (
+	"github.com/apex/log"
 	config2 "github.com/crawlab-team/crawlab-core/config"
 	"github.com/crawlab-team/crawlab-core/constants"
 	"github.com/crawlab-team/crawlab-core/errors"
@@ -34,19 +35,18 @@ func (svc *Service) SetConfigPath(path string) {
 	svc.cfgPath = path
 }
 
-func (svc *Service) ScheduleWithTaskId(id primitive.ObjectID, opts *interfaces.SpiderRunOptions) (taskId primitive.ObjectID, err error) {
+func (svc *Service) ScheduleWithTaskId(id primitive.ObjectID, opts *interfaces.SpiderRunOptions) (taskIds []primitive.ObjectID, err error) {
 	// spider
 	s, err := svc.modelSvc.GetSpiderById(id)
 	if err != nil {
-		return primitive.NilObjectID, nil
+		return nil, err
 	}
-
 	// assign tasks
-	if err := svc.scheduleTasks(s, opts); err != nil {
-		return primitive.NilObjectID, err
+	ids, err := svc.scheduleTasks(s, opts)
+	if err != nil {
+		return nil, err
 	}
-
-	return primitive.NilObjectID, nil
+	return ids, nil
 }
 
 func (svc *Service) Schedule(id primitive.ObjectID, opts *interfaces.SpiderRunOptions) (err error) {
@@ -57,8 +57,9 @@ func (svc *Service) Schedule(id primitive.ObjectID, opts *interfaces.SpiderRunOp
 	}
 
 	// assign tasks
-	if err := svc.scheduleTasks(s, opts); err != nil {
-		return err
+	_, err = svc.scheduleTasks(s, opts)
+	if err != nil {
+		return  err
 	}
 
 	return nil
@@ -73,7 +74,7 @@ func (svc *Service) Delete(id primitive.ObjectID) (err error) {
 	panic("implement me")
 }
 
-func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOptions) (err error) {
+func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOptions) (taskIds []primitive.ObjectID, err error) {
 	// main task
 	mainTask := &models.Task{
 		SpiderId:   s.Id,
@@ -87,7 +88,9 @@ func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOp
 		UserId:     opts.UserId,
 	}
 
-	ids := []primitive.ObjectID
+	log.Debugf("[scheduleTasks] opts: %v", opts)
+
+	var ids = []primitive.ObjectID{}
 
 	if svc.isMultiTask(opts) {
 		// multi tasks
@@ -98,7 +101,7 @@ func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOp
 		//}
 		nodeIds, err := svc.getNodeIds(opts)
 		if err != nil {
-			return err
+			return nil, err
 		}
 		for _, nodeId := range nodeIds {
 			t := &models.Task{
@@ -112,27 +115,32 @@ func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOp
 				Priority: opts.Priority,
 				UserId:   opts.UserId,
 			}
-			if err := svc.schedulerSvc.Enqueue(t); err != nil {
-				return err
+
+			taskId, err := svc.schedulerSvc.EnqueueWithTaskId(t)
+			log.Debugf("[scheduleTasks] isMultiTask taskId: %v", taskId)
+			if err != nil {
+				return nil, err
 			}
+			ids = append(ids, taskId)
 		}
 	} else {
 		// single task
 		nodeIds, err := svc.getNodeIds(opts)
 		if err != nil {
-			return err
+			return nil, err
 		}
 		if len(nodeIds) > 0 {
 			mainTask.NodeId = nodeIds[0]
 		}
-		taskId,err:=svc.schedulerSvc.EnqueueWithTaskId(mainTask)
-
+		taskId, err := svc.schedulerSvc.EnqueueWithTaskId(mainTask)
+		log.Debugf("[scheduleTasks] isSingleTask taskId: %v", taskId)
 		if err != nil {
-			return err
+			return nil, err
 		}
+		ids = append(ids, taskId)
 	}
 
-	return nil
+	return ids, nil
 }
 
 func (svc *Service) getNodeIds(opts *interfaces.SpiderRunOptions) (nodeIds []primitive.ObjectID, err error) {

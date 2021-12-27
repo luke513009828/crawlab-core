@@ -2,6 +2,7 @@ package scheduler
 
 import (
 	"fmt"
+	"github.com/apex/log"
 	config2 "github.com/crawlab-team/crawlab-core/config"
 	"github.com/crawlab-team/crawlab-core/constants"
 	"github.com/crawlab-team/crawlab-core/errors"
@@ -99,12 +100,12 @@ func (svc *Service) EnqueueWithTaskId(t interfaces.Task) (taskId primitive.Objec
 	if !t.GetUserId().IsZero() {
 		u, _ = svc.modelSvc.GetUserById(t.GetUserId())
 	}
-
+	log.Debugf("[scheduleTasks] before delegate taskId: %v", t.GetId())
 	// add task
 	if err = delegate.NewModelDelegate(t, u).Add(); err != nil {
 		return primitive.NilObjectID, err
 	}
-
+	log.Debugf("[scheduleTasks] after delegate taskId: %v", t.GetId())
 	// task queue item
 	tq := &models.TaskQueueItem{
 		Id:       t.GetId(),
@@ -118,16 +119,18 @@ func (svc *Service) EnqueueWithTaskId(t interfaces.Task) (taskId primitive.Objec
 	}
 
 	// enqueue task
-	_, err = mongo.GetMongoCol(interfaces.ModelColNameTaskQueue).Insert(tq)
+	tqid, err := mongo.GetMongoCol(interfaces.ModelColNameTaskQueue).Insert(tq)
 	if err != nil {
 		return primitive.NilObjectID, trace.TraceError(err)
 	}
+	log.Debugf("[scheduleTasks] after ModelColNameTaskQueue taskId: %v", tqid)
 
 	// add task stat
-	_, err = mongo.GetMongoCol(interfaces.ModelColNameTaskStat).Insert(ts)
+	tsid, err := mongo.GetMongoCol(interfaces.ModelColNameTaskStat).Insert(ts)
 	if err != nil {
 		return primitive.NilObjectID, trace.TraceError(err)
 	}
+	log.Debugf("[scheduleTasks] after ModelColNameTaskStat taskId: %v", tsid)
 
 	// success
 	return t.GetId(), nil
