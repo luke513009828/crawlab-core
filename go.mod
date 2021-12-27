@@ -1,4 +1,4 @@
-module github.com/crawlab-team/crawlab-core
+module github.com/luke513009828/crawlab-core
 
 go 1.16
 
