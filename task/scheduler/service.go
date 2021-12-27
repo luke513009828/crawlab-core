@@ -90,6 +90,49 @@ func (svc *Service) Enqueue(t interfaces.Task) (err error) {
 	return nil
 }
 
+func (svc *Service) EnqueueWithTaskId(t interfaces.Task) (taskId primitive.ObjectID, err error) {
+	// set task status
+	t.SetStatus(constants.TaskStatusPending)
+
+	// user
+	var u *models.User
+	if !t.GetUserId().IsZero() {
+		u, _ = svc.modelSvc.GetUserById(t.GetUserId())
+	}
+
+	// add task
+	if err = delegate.NewModelDelegate(t, u).Add(); err != nil {
+		return primitive.NilObjectID, err
+	}
+
+	// task queue item
+	tq := &models.TaskQueueItem{
+		Id:       t.GetId(),
+		Priority: t.GetPriority(),
+	}
+
+	// task stat
+	ts := &models.TaskStat{
+		Id:       t.GetId(),
+		CreateTs: time.Now(),
+	}
+
+	// enqueue task
+	_, err = mongo.GetMongoCol(interfaces.ModelColNameTaskQueue).Insert(tq)
+	if err != nil {
+		return primitive.NilObjectID, trace.TraceError(err)
+	}
+
+	// add task stat
+	_, err = mongo.GetMongoCol(interfaces.ModelColNameTaskStat).Insert(ts)
+	if err != nil {
+		return primitive.NilObjectID, trace.TraceError(err)
+	}
+
+	// success
+	return t.GetId(), nil
+}
+
 func (svc *Service) DequeueAndSchedule() {
 	for {
 		if svc.IsStopped() {

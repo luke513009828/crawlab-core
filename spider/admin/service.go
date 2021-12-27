@@ -34,6 +34,21 @@ func (svc *Service) SetConfigPath(path string) {
 	svc.cfgPath = path
 }
 
+func (svc *Service) ScheduleWithTaskId(id primitive.ObjectID, opts *interfaces.SpiderRunOptions) (taskId primitive.ObjectID, err error) {
+	// spider
+	s, err := svc.modelSvc.GetSpiderById(id)
+	if err != nil {
+		return primitive.NilObjectID, nil
+	}
+
+	// assign tasks
+	if err := svc.scheduleTasks(s, opts); err != nil {
+		return primitive.NilObjectID, err
+	}
+
+	return primitive.NilObjectID, nil
+}
+
 func (svc *Service) Schedule(id primitive.ObjectID, opts *interfaces.SpiderRunOptions) (err error) {
 	// spider
 	s, err := svc.modelSvc.GetSpiderById(id)
@@ -72,6 +87,8 @@ func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOp
 		UserId:     opts.UserId,
 	}
 
+	ids := []primitive.ObjectID
+
 	if svc.isMultiTask(opts) {
 		// multi tasks
 		// TODO: implement associated tasks
@@ -108,7 +125,9 @@ func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOp
 		if len(nodeIds) > 0 {
 			mainTask.NodeId = nodeIds[0]
 		}
-		if err := svc.schedulerSvc.Enqueue(mainTask); err != nil {
+		taskId,err:=svc.schedulerSvc.EnqueueWithTaskId(mainTask)
+
+		if err != nil {
 			return err
 		}
 	}

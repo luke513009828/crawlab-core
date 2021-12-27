@@ -116,12 +116,14 @@ func (ctx *taskContext) run(c *gin.Context) {
 	}
 
 	// run
-	if err := ctx.adminSvc.Schedule(s.GetId(), opts); err != nil {
+	taskId, err := ctx.adminSvc.ScheduleWithTaskId(s.GetId(), opts)
+	if err != nil {
 		HandleErrorInternalServerError(c, err)
 		return
 	}
+	HandleSuccessWithData(c, taskId)
 
-	HandleSuccess(c)
+	//HandleSuccess(c)
 }
 
 func (ctx *taskContext) restart(c *gin.Context) {

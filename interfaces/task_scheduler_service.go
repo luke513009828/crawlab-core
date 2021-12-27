@@ -9,6 +9,8 @@ type TaskSchedulerService interface {
 	TaskBaseService
 	// Enqueue task into the task queue
 	Enqueue(t Task) (err error)
+	// Enqueue task into the task queue and return TaskId
+	EnqueueWithTaskId(t Task) (taskId primitive.ObjectID, err error)
 	// DequeueAndSchedule continuously dequeue task and schedule to corresponding node
 	DequeueAndSchedule()
 	// Dequeue task with node info from the task queue
