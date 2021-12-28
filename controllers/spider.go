@@ -3,6 +3,13 @@ package controllers
 import (
 	"bytes"
 	"fmt"
+	"github.com/crawlab-team/crawlab-db/mongo"
+	vcs "github.com/crawlab-team/crawlab-vcs"
+	"github.com/crawlab-team/go-trace"
+	"github.com/gin-gonic/gin"
+	"github.com/go-git/go-git/v5"
+	"github.com/go-git/go-git/v5/config"
+	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/luke513009828/crawlab-core/constants"
 	"github.com/luke513009828/crawlab-core/entity"
 	"github.com/luke513009828/crawlab-core/errors"
@@ -13,13 +20,6 @@ import (
 	"github.com/luke513009828/crawlab-core/spider/admin"
 	"github.com/luke513009828/crawlab-core/spider/sync"
 	"github.com/luke513009828/crawlab-core/utils"
-	"github.com/crawlab-team/crawlab-db/mongo"
-	vcs "github.com/crawlab-team/crawlab-vcs"
-	"github.com/crawlab-team/go-trace"
-	"github.com/gin-gonic/gin"
-	"github.com/go-git/go-git/v5"
-	"github.com/go-git/go-git/v5/config"
-	"github.com/go-git/go-git/v5/plumbing"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	mongo2 "go.mongodb.org/mongo-driver/mongo"
@@ -294,13 +294,20 @@ func (ctx *spiderContext) run(c *gin.Context) {
 		opts.UserId = u.GetId()
 	}
 
-	// schedule
-	if err := ctx.adminSvc.Schedule(id, &opts); err != nil {
+	ids, err := ctx.adminSvc.ScheduleWithTaskId(id, &opts)
+	if err != nil {
 		HandleErrorInternalServerError(c, err)
 		return
 	}
+	HandleSuccessWithData(c, ids)
 
-	HandleSuccess(c)
+	// schedule
+	//if err := ctx.adminSvc.Schedule(id, &opts); err != nil {
+	//	HandleErrorInternalServerError(c, err)
+	//	return
+	//}
+	//
+	//HandleSuccess(c)
 }
 
 func (ctx *spiderContext) getGit(c *gin.Context) {
