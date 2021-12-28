@@ -117,11 +117,11 @@ func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOp
 			}
 
 			taskId, err := svc.schedulerSvc.EnqueueWithTaskId(t)
-			log.Debugf("[scheduleTasks] isMultiTask taskId: %v", taskId)
+			log.Debugf("[scheduleTasks] isMultiTask taskId: %v", taskId.Hex())
 			if err != nil {
 				return nil, err
 			}
-			ids = append(ids, taskId.String())
+			ids = append(ids, taskId.Hex())
 		}
 	} else {
 		// single task
@@ -133,11 +133,11 @@ func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOp
 			mainTask.NodeId = nodeIds[0]
 		}
 		taskId, err := svc.schedulerSvc.EnqueueWithTaskId(mainTask)
-		log.Debugf("[scheduleTasks] isSingleTask taskId: %v", taskId)
+		log.Debugf("[scheduleTasks] isSingleTask taskId: %v", taskId.Hex())
 		if err != nil {
 			return nil, err
 		}
-		ids = append(ids, taskId.String())
+		ids = append(ids, taskId.Hex())
 	}
 	log.Debugf("[scheduleTasks] return ids: %v", ids)
 	log.Debugf("[scheduleTasks] len=%d cap=%d slice=%v\n", len(ids), cap(ids), ids)
