@@ -139,7 +139,8 @@ func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOp
 		}
 		ids = append(ids, taskId.String())
 	}
-
+	log.Debugf("[scheduleTasks] return ids: %v", ids)
+	log.Debugf("[scheduleTasks] len=%d cap=%d slice=%v\n", len(ids), cap(ids), ids)
 	return ids, nil
 }
 
