@@ -10,7 +10,7 @@ type SpiderAdminService interface {
 	Schedule(id primitive.ObjectID, opts *SpiderRunOptions) (err error)
 
 	// Schedule a new task of the spider and return task id
-	ScheduleWithTaskId(id primitive.ObjectID, opts *SpiderRunOptions) (taskIds []primitive.ObjectID, err error)
+	ScheduleWithTaskId(id primitive.ObjectID, opts *SpiderRunOptions) (taskIds interface{}, err error)
 
 	// Clone the spider
 	Clone(id primitive.ObjectID, opts *SpiderCloneOptions) (err error)

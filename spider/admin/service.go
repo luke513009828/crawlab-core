@@ -2,6 +2,7 @@ package admin
 
 import (
 	"github.com/apex/log"
+	"github.com/crawlab-team/go-trace"
 	config2 "github.com/luke513009828/crawlab-core/config"
 	"github.com/luke513009828/crawlab-core/constants"
 	"github.com/luke513009828/crawlab-core/errors"
@@ -10,7 +11,6 @@ import (
 	"github.com/luke513009828/crawlab-core/models/service"
 	"github.com/luke513009828/crawlab-core/node/config"
 	"github.com/luke513009828/crawlab-core/task/scheduler"
-	"github.com/crawlab-team/go-trace"
 	"github.com/spf13/viper"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -35,7 +35,7 @@ func (svc *Service) SetConfigPath(path string) {
 	svc.cfgPath = path
 }
 
-func (svc *Service) ScheduleWithTaskId(id primitive.ObjectID, opts *interfaces.SpiderRunOptions) (taskIds []primitive.ObjectID, err error) {
+func (svc *Service) ScheduleWithTaskId(id primitive.ObjectID, opts *interfaces.SpiderRunOptions) (taskIds interface{}, err error) {
 	// spider
 	s, err := svc.modelSvc.GetSpiderById(id)
 	if err != nil {
@@ -74,7 +74,7 @@ func (svc *Service) Delete(id primitive.ObjectID) (err error) {
 	panic("implement me")
 }
 
-func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOptions) (taskIds []primitive.ObjectID, err error) {
+func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOptions) (taskIds interface{}, err error) {
 	// main task
 	mainTask := &models.Task{
 		SpiderId:   s.Id,
@@ -90,7 +90,7 @@ func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOp
 
 	log.Debugf("[scheduleTasks] opts: %v", opts)
 
-	var ids = []primitive.ObjectID{}
+	var ids = []string{}
 
 	if svc.isMultiTask(opts) {
 		// multi tasks
@@ -121,7 +121,7 @@ func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOp
 			if err != nil {
 				return nil, err
 			}
-			ids = append(ids, taskId)
+			ids = append(ids, taskId.String())
 		}
 	} else {
 		// single task
@@ -137,7 +137,7 @@ func (svc *Service) scheduleTasks(s *models.Spider, opts *interfaces.SpiderRunOp
 		if err != nil {
 			return nil, err
 		}
-		ids = append(ids, taskId)
+		ids = append(ids, taskId.String())
 	}
 
 	return ids, nil
